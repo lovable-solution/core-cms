@@ -15,6 +15,7 @@ import { siteConfig } from '@/lib/utils';
 import { getThemeCss } from '@/lib/theme';
 import { getTypography, typographyToCss } from '@/lib/typography';
 import { getMediaSlot } from '@/lib/media';
+import { getElementStyles } from '@/lib/styles';
 import { googleFontsHref } from '@/lib/fonts';
 import '../globals.css';
 
@@ -96,12 +97,13 @@ export default async function LocaleLayout({
   const t = await getTranslations({ locale, namespace: 'nav' });
   const { isEnabled: isPreview } = await draftMode();
 
-  const [themeCss, typography, logoDark, logoLight, logoPlus] = await Promise.all([
+  const [themeCss, typography, logoDark, logoLight, logoPlus, styles] = await Promise.all([
     getThemeCss(),
     getTypography(),
     getMediaSlot('brand.logoDark', '/logo-core.png', 'core+'),
     getMediaSlot('brand.logoLight', '/logo-core-white.png', 'core+'),
     getMediaSlot('brand.logoPlus', '/logo-plus.png', ''),
+    getElementStyles(),
   ]);
   const typographyCss = `:root { ${typographyToCss(typography)} --text-scale: ${typography.scale}; }`;
   const logos = { dark: logoDark, light: logoLight, plus: logoPlus };
@@ -116,7 +118,12 @@ export default async function LocaleLayout({
       </head>
       <body className="min-h-screen bg-bg font-sans text-fg antialiased">
         {isPreview && <PreviewBanner />}
-        {/* Structured data — rendered outside the client provider so it stays server-only */}
+        {/* Structured data — rendered outside the client provider so it stays server-only.
+            A plain <script> tag (Next's documented JSON-LD pattern) is required here, not
+            next/script, which defers all injection to a client-side effect and would drop
+            this from the initial SSR HTML entirely — worse for crawlers than the harmless
+            dev-only React warning it logs when the locale switcher forces a client re-render
+            of the root layout. */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -150,11 +157,11 @@ export default async function LocaleLayout({
             >
               {t('skipToContent')}
             </a>
-            <Navbar logos={logos} />
+            <Navbar logos={logos} styles={styles} />
             <main id="main" className="relative">
               {children}
             </main>
-            <Footer logos={logos} />
+            <Footer logos={logos} styles={styles} />
             <CookieBanner />
             <CommandPalette />
           </Providers>

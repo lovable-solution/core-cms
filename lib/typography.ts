@@ -11,7 +11,7 @@ export type TypographyShape = {
 };
 
 // Mirrors the compile-time next/font choices previously baked into layout.tsx.
-const FALLBACK: TypographyShape = {
+export const TYPOGRAPHY_FALLBACK: TypographyShape = {
   sans: 'Inter',
   display: 'Space Grotesk',
   mono: 'JetBrains Mono',
@@ -31,7 +31,7 @@ export async function getTypography(): Promise<TypographyShape> {
   } catch {
     // fall through to fallback
   }
-  return FALLBACK;
+  return TYPOGRAPHY_FALLBACK;
 }
 
 export function typographyToCss(t: TypographyShape): string {

@@ -5,42 +5,48 @@ import { LinkedinIcon } from '@/components/ui/LinkedinIcon';
 import { DualClock } from '@/components/ui/DualClock';
 import { Link } from '@/i18n/routing';
 import { siteConfig } from '@/lib/utils';
+import { styleFromOverride, type CmsStyleMap } from '@/lib/styleOverride';
 import type { BrandLogos } from '@/components/layout/Navbar';
 
-export async function Footer({ logos }: { logos: BrandLogos }) {
+const SERVICE_HASHES = [
+  '#human-factors',
+  '#operational-excellence',
+  '#compliance-assurance',
+  '#digital-ai',
+  '#competency-training',
+  '#commercial-strategy',
+  '#legacy-modernisation',
+  '#bespoke-collaboration',
+];
+const PRODUCT_HASHES = ['#hpe', '#environmental', '#station', '#dpe', '#bespoke'];
+
+export async function Footer({ logos, styles }: { logos: BrandLogos; styles: CmsStyleMap }) {
   const t = await getTranslations('footer');
   const nav = await getTranslations('nav');
   const locale = await getLocale();
 
+  const serviceLinks = (t.raw('links.services') as string[]).map((label, i) => ({
+    label,
+    href: '/services' as const,
+    hash: SERVICE_HASHES[i] ?? '',
+    key: `content:footer.links.services.${i}`,
+  }));
+  const productLinks = (t.raw('links.products') as string[]).map((label, i) => ({
+    label,
+    href: '/products' as const,
+    hash: PRODUCT_HASHES[i] ?? '',
+    key: `content:footer.links.products.${i}`,
+  }));
+
   const cols = [
-    {
-      title: t('sections.services'),
-      links: [
-        { label: 'Human Factors & Performance', href: '/services' as const, hash: '#human-factors' },
-        { label: 'Operational Excellence', href: '/services' as const, hash: '#operational-excellence' },
-        { label: 'Compliance & Assurance', href: '/services' as const, hash: '#compliance-assurance' },
-        { label: 'Digital Transformation & AI', href: '/services' as const, hash: '#digital-ai' },
-        { label: 'Competency & Training', href: '/services' as const, hash: '#competency-training' },
-        { label: 'Commercial & Bid Support', href: '/services' as const, hash: '#commercial-strategy' },
-        { label: 'Legacy Modernisation', href: '/services' as const, hash: '#legacy-modernisation' },
-        { label: 'Bespoke Systems', href: '/services' as const, hash: '#bespoke-collaboration' },
-      ],
-    },
-    {
-      title: t('sections.products'),
-      links: [
-        { label: 'Human Performance Engine', href: '/products' as const, hash: '#hpe' },
-        { label: 'Environmental Intelligence', href: '/products' as const, hash: '#environmental' },
-        { label: 'Smart Safety & Performance Station', href: '/products' as const, hash: '#station' },
-        { label: 'Document Production Engine', href: '/products' as const, hash: '#dpe' },
-        { label: 'Bespoke Systems', href: '/products' as const, hash: '#bespoke' },
-      ],
-    },
+    { title: t('sections.services'), titleKey: 'content:footer.sections.services', links: serviceLinks },
+    { title: t('sections.products'), titleKey: 'content:footer.sections.products', links: productLinks },
     {
       title: t('sections.company'),
+      titleKey: 'content:footer.sections.company',
       links: [
-        { label: nav('about'), href: '/about' as const, hash: '' },
-        { label: nav('contact'), href: '/contact' as const, hash: '' },
+        { label: nav('about'), href: '/about' as const, hash: '', key: 'content:nav.about' },
+        { label: nav('contact'), href: '/contact' as const, hash: '', key: 'content:nav.contact' },
       ],
     },
   ];
@@ -59,6 +65,7 @@ export async function Footer({ logos }: { logos: BrandLogos }) {
                   height={740}
                   className="h-9 w-auto dark:hidden"
                   style={logos.dark.scale !== 1 ? { transform: `scale(${logos.dark.scale})` } : undefined}
+                  data-cms-key="media:brand.logoDark"
                 />
                 <Image
                   src={logos.light.src}
@@ -67,6 +74,7 @@ export async function Footer({ logos }: { logos: BrandLogos }) {
                   height={740}
                   className="hidden h-9 w-auto dark:block"
                   style={logos.light.scale !== 1 ? { transform: `scale(${logos.light.scale})` } : undefined}
+                  data-cms-key="media:brand.logoLight"
                 />
                 {/* Brand red plus, kept out of the dark-mode invert filter */}
                 <Image
@@ -97,7 +105,9 @@ export async function Footer({ logos }: { logos: BrandLogos }) {
                   className="inline-flex items-center gap-1 rounded-full border border-line px-3 py-1.5 text-xs text-muted transition-colors hover:border-signal hover:text-signal"
                 >
                   <LinkedinIcon className="h-3.5 w-3.5" />
-                  LinkedIn
+                  <span data-cms-key="content:footer.linkedinLabel" style={styleFromOverride(styles['content:footer.linkedinLabel'])}>
+                    {t('linkedinLabel')}
+                  </span>
                 </a>
               </div>
             </div>
@@ -106,7 +116,11 @@ export async function Footer({ logos }: { logos: BrandLogos }) {
           <div className="grid grid-cols-2 gap-10 md:grid-cols-3">
             {cols.map((col) => (
               <div key={col.title}>
-                <h4 className="font-mono text-[11px] uppercase tracking-[0.2em] text-subtle">
+                <h4
+                  className="font-mono text-[11px] uppercase tracking-[0.2em] text-subtle"
+                  data-cms-key={col.titleKey}
+                  style={styleFromOverride(styles[col.titleKey])}
+                >
                   {col.title}
                 </h4>
                 <ul className="mt-5 flex flex-col gap-3">
@@ -116,7 +130,9 @@ export async function Footer({ logos }: { logos: BrandLogos }) {
                         href={`${l.href}${l.hash}` as never}
                         className="group inline-flex items-center gap-1 text-sm text-fg/90 transition-colors hover:text-signal"
                       >
-                        {l.label}
+                        <span data-cms-key={l.key} style={styleFromOverride(styles[l.key])}>
+                          {l.label}
+                        </span>
                         <ArrowUpRight className="h-3.5 w-3.5 opacity-0 transition-all group-hover:opacity-100 flip-rtl" />
                       </Link>
                     </li>
@@ -136,10 +152,19 @@ export async function Footer({ logos }: { logos: BrandLogos }) {
             </span>
             <span className="inline-flex items-center gap-2">
               <span className="h-1 w-1 rounded-full bg-faint" />
-              {t('legal.registered')}
+              <span
+                data-cms-key="content:footer.legal.registered"
+                style={styleFromOverride(styles['content:footer.legal.registered'])}
+              >
+                {t('legal.registered')}
+              </span>
             </span>
           </div>
-          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-faint">
+          <div
+            className="font-mono text-[10px] uppercase tracking-[0.3em] text-faint"
+            data-cms-key="content:footer.legal.version"
+            style={styleFromOverride(styles['content:footer.legal.version'])}
+          >
             {t('legal.version')}
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils';
+import { styleFromOverride, type CmsStyleMap } from '@/lib/styleOverride';
 import { Reveal, RevealText } from './Reveal';
 
 interface SectionHeaderProps {
@@ -11,6 +12,7 @@ interface SectionHeaderProps {
   eyebrowKey?: string;
   titleKey?: string;
   descriptionKey?: string;
+  styles?: CmsStyleMap;
 }
 
 export function SectionHeader({
@@ -22,7 +24,12 @@ export function SectionHeader({
   eyebrowKey,
   titleKey,
   descriptionKey,
+  styles,
 }: SectionHeaderProps) {
+  const eyebrowFullKey = eyebrowKey && `content:${eyebrowKey}`;
+  const titleFullKey = titleKey && `content:${titleKey}`;
+  const descriptionFullKey = descriptionKey && `content:${descriptionKey}`;
+
   return (
     <div
       className={cn(
@@ -33,14 +40,19 @@ export function SectionHeader({
     >
       {eyebrow && (
         <Reveal>
-          <span className="eyebrow" data-cms-key={eyebrowKey && `content:${eyebrowKey}`}>
+          <span
+            className="eyebrow"
+            data-cms-key={eyebrowFullKey}
+            style={eyebrowFullKey ? styleFromOverride(styles?.[eyebrowFullKey]) : undefined}
+          >
             {eyebrow}
           </span>
         </Reveal>
       )}
       <h2
         className="font-display text-display-xs text-balance text-fg"
-        data-cms-key={titleKey && `content:${titleKey}`}
+        data-cms-key={titleFullKey}
+        style={titleFullKey ? styleFromOverride(styles?.[titleFullKey]) : undefined}
       >
         <RevealText text={title} />
       </h2>
@@ -48,7 +60,8 @@ export function SectionHeader({
         <Reveal delay={0.15}>
           <p
             className="text-pretty max-w-2xl text-lg leading-relaxed text-muted"
-            data-cms-key={descriptionKey && `content:${descriptionKey}`}
+            data-cms-key={descriptionFullKey}
+            style={descriptionFullKey ? styleFromOverride(styles?.[descriptionFullKey]) : undefined}
           >
             {description}
           </p>

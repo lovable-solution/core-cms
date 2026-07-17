@@ -44,3 +44,11 @@ model AdminUser {
   passwordHash String
   createdAt    DateTime @default(now())
 }
+
+model ElementStyle {
+  id        String   @id @default(cuid())
+  cmsKey    String   @unique
+  draft     Json
+  published Json
+  updatedAt DateTime @updatedAt
+}

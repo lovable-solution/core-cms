@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Activity, Award, Calendar, FileText, Package, LineChart, Check, Circle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Reveal, RevealText } from '@/components/ui/Reveal';
+import { CmsIcon } from '@/components/cms/CmsIcon';
+import { styleFromOverride, type CmsStyleMap } from '@/lib/styleOverride';
 
 type ModuleKey = 'fatigue' | 'competency' | 'resource' | 'analytics' | 'document' | 'asset';
 
@@ -63,7 +65,7 @@ const modulesDef: ModuleDef[] = [
   },
 ];
 
-export function HPEInteractive() {
+export function HPEInteractive({ styles }: { styles: CmsStyleMap }) {
   const t = useTranslations('hpeDemo');
   const [active, setActive] = useState<Set<ModuleKey>>(
     new Set(['fatigue', 'competency']),
@@ -90,14 +92,26 @@ export function HPEInteractive() {
         <div className="flex flex-col items-start justify-between gap-10 md:flex-row md:items-end">
           <div className="max-w-3xl">
             <Reveal>
-              <span className="eyebrow">{t('eyebrow')}</span>
+              <span
+                className="eyebrow"
+                data-cms-key="content:hpeDemo.eyebrow"
+                style={styleFromOverride(styles['content:hpeDemo.eyebrow'])}
+              >
+                {t('eyebrow')}
+              </span>
             </Reveal>
             <h2 className="mt-6 font-display text-display-xs text-balance tracking-tighter text-fg">
-              <RevealText text={t('title')} />
+              <span data-cms-key="content:hpeDemo.title" style={styleFromOverride(styles['content:hpeDemo.title'])}>
+                <RevealText text={t('title')} />
+              </span>
             </h2>
           </div>
           <Reveal delay={0.2}>
-            <p className="max-w-sm text-pretty leading-relaxed text-muted">
+            <p
+              className="max-w-sm text-pretty leading-relaxed text-muted"
+              data-cms-key="content:hpeDemo.description"
+              style={styleFromOverride(styles['content:hpeDemo.description'])}
+            >
               {t('description')}
             </p>
           </Reveal>
@@ -108,7 +122,10 @@ export function HPEInteractive() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {modulesDef.map((m, i) => {
               const isActive = active.has(m.key);
-              const Icon = m.icon;
+              const nameKey = `content:hpeDemo.modules.${m.key}.name`;
+              const statusKey = `content:hpeDemo.modules.${m.key}.status`;
+              const metricKey = `content:hpeDemo.modules.${m.key}.metric`;
+              const iconKey = `icon:hpeDemo.modules.${m.key}`;
               return (
                 <motion.button
                   key={m.key}
@@ -127,7 +144,10 @@ export function HPEInteractive() {
                   aria-pressed={isActive}
                 >
                   <div className="flex items-center justify-between">
-                    <Icon
+                    <CmsIcon
+                      cmsKey={iconKey}
+                      icon={m.icon}
+                      styles={styles}
                       className={`h-5 w-5 transition-colors ${isActive ? 'text-signal' : 'text-subtle'}`}
                       strokeWidth={1.6}
                     />
@@ -135,14 +155,24 @@ export function HPEInteractive() {
                       className={`font-mono text-[10px] uppercase tracking-[0.2em] ${
                         m.available ? 'text-signal' : 'text-subtle'
                       }`}
+                      data-cms-key={statusKey}
+                      style={styleFromOverride(styles[statusKey])}
                     >
                       {t(`modules.${m.key}.status`)}
                     </span>
                   </div>
-                  <div className="mt-5 font-display text-lg leading-tight text-fg">
+                  <div
+                    className="mt-5 font-display text-lg leading-tight text-fg"
+                    data-cms-key={nameKey}
+                    style={styleFromOverride(styles[nameKey])}
+                  >
                     {t(`modules.${m.key}.name`)}
                   </div>
-                  <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-subtle">
+                  <div
+                    className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-subtle"
+                    data-cms-key={metricKey}
+                    style={styleFromOverride(styles[metricKey])}
+                  >
                     {t(`modules.${m.key}.metric`)}
                   </div>
                   <div className="mt-5 h-14">{m.metricVisual(isActive)}</div>
@@ -152,7 +182,12 @@ export function HPEInteractive() {
                         <span className="grid h-4 w-4 place-items-center rounded-full bg-signal text-ink-950">
                           <Check className="h-2.5 w-2.5" strokeWidth={3} />
                         </span>
-                        <span>{t('summary')}</span>
+                        <span
+                          data-cms-key="content:hpeDemo.summary"
+                          style={styleFromOverride(styles['content:hpeDemo.summary'])}
+                        >
+                          {t('summary')}
+                        </span>
                       </>
                     ) : (
                       <>
@@ -168,7 +203,11 @@ export function HPEInteractive() {
 
           {/* Summary panel */}
           <div className="relative rounded-2xl border border-line bg-surface/40 p-6 lg:sticky lg:top-28 lg:self-start">
-            <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-subtle">
+            <div
+              className="font-mono text-[10px] uppercase tracking-[0.2em] text-subtle"
+              data-cms-key="content:hpeDemo.readiness"
+              style={styleFromOverride(styles['content:hpeDemo.readiness'])}
+            >
               {t('readiness')}
             </div>
             <div className="mt-3 flex items-end gap-2">
@@ -215,6 +254,10 @@ export function HPEInteractive() {
                         className={`font-mono text-[9px] uppercase tracking-widest ${
                           m.available ? 'text-signal' : 'text-subtle'
                         }`}
+                        data-cms-key={m.available ? 'content:hpeDemo.available' : 'content:hpeDemo.roadmap'}
+                        style={styleFromOverride(
+                          styles[m.available ? 'content:hpeDemo.available' : 'content:hpeDemo.roadmap'],
+                        )}
                       >
                         {m.available ? t('available') : t('roadmap')}
                       </span>

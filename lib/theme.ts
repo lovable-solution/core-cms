@@ -19,7 +19,7 @@ export type ThemeTokens = {
 export type ThemeShape = { light: ThemeTokens; dark: ThemeTokens };
 
 // Mirrors the static values in app/globals.css — used if the DB is unreachable or unseeded.
-const FALLBACK: ThemeShape = {
+export const THEME_FALLBACK: ThemeShape = {
   light: {
     bg: '#faf9f6', surface: '#ffffff', surfaceAlt: '#f7f5f0', fg: '#0f0f10', muted: '#3c3c3a',
     subtle: '#70706c', faint: '#aaaaa6', line: '#e2e0da', lineSoft: '#efede7',
@@ -53,7 +53,7 @@ function tokensToCss(tokens: ThemeTokens): string {
 }
 
 export async function getThemeCss(): Promise<string> {
-  let value: ThemeShape = FALLBACK;
+  let value: ThemeShape = THEME_FALLBACK;
   try {
     const { isEnabled: isPreview } = await draftMode();
     const row = await prisma.themeConfig.findFirst();
@@ -62,7 +62,7 @@ export async function getThemeCss(): Promise<string> {
       if (data?.light && data?.dark) value = data;
     }
   } catch {
-    value = FALLBACK;
+    value = THEME_FALLBACK;
   }
 
   return `:root { ${tokensToCss(value.light)} } .dark { ${tokensToCss(value.dark)} }`;

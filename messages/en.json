@@ -56,6 +56,26 @@
       "products": "Products",
       "company": "Company"
     },
+    "links": {
+      "services": [
+        "Human Factors & Performance",
+        "Operational Excellence",
+        "Compliance & Assurance",
+        "Digital Transformation & AI",
+        "Competency & Training",
+        "Commercial & Bid Support",
+        "Legacy Modernisation",
+        "Bespoke Systems"
+      ],
+      "products": [
+        "Human Performance Engine",
+        "Environmental Intelligence",
+        "Smart Safety & Performance Station",
+        "Document Production Engine",
+        "Bespoke Systems"
+      ]
+    },
+    "linkedinLabel": "LinkedIn",
     "legal": {
       "registered": "Registered in England & Wales",
       "version": "v1.0 · Safety-Critical Operations"
@@ -68,6 +88,7 @@
     "headline2": "Human Performance",
     "headline3": "in Safety-Critical",
     "headline4": "Operations.",
+    "tagline": "Intelligent products. Specialist services",
     "subheading": "Consulting and intelligent systems designed to improve safety, performance, and operational reliability across complex environments.",
     "cta1": "Request a Consultation",
     "cta2": "Become a Pilot Partner",
@@ -146,6 +167,7 @@
     "hpeDesc": "A next-generation system combining fatigue, competency, and performance data into one intelligent, modular platform.",
     "currentPhase": "Current phase: available now",
     "futurePhase": "Future phase",
+    "futureModules": ["Resource", "Analytics", "Documents", "Assets"],
     "exploreEngine": "Explore the engine",
     "exploreSystem": "Explore system",
     "sss": {

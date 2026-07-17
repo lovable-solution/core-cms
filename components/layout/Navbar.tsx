@@ -11,10 +11,11 @@ import { LocaleSwitcher } from '@/components/ui/LocaleSwitcher';
 import { Link, usePathname } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
 import type { MediaSlotValue } from '@/lib/mediaTypes';
+import { styleFromOverride, type CmsStyleMap } from '@/lib/styleOverride';
 
 export type BrandLogos = { dark: MediaSlotValue; light: MediaSlotValue; plus: MediaSlotValue };
 
-export function Navbar({ logos }: { logos: BrandLogos }) {
+export function Navbar({ logos, styles }: { logos: BrandLogos; styles: CmsStyleMap }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -108,7 +109,11 @@ export function Navbar({ logos }: { logos: BrandLogos }) {
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
-                <span className="relative" data-cms-key={`content:${item.key}`}>
+                <span
+                  className="relative"
+                  data-cms-key={`content:${item.key}`}
+                  style={styleFromOverride(styles[`content:${item.key}`])}
+                >
                   {item.label}
                 </span>
               </Link>
@@ -159,14 +164,26 @@ export function Navbar({ logos }: { logos: BrandLogos }) {
                   href={item.href}
                   className="flex items-center justify-between rounded-lg px-3 py-3 text-base text-fg hover:bg-surface"
                 >
-                  <span>{item.label}</span>
+                  <span
+                    data-cms-key={`content:${item.key}`}
+                    style={styleFromOverride(styles[`content:${item.key}`])}
+                  >
+                    {item.label}
+                  </span>
                   <span className="font-mono text-xs text-subtle">
                     0{i + 1}
                   </span>
                 </Link>
               ))}
               <div className="mt-4">
-                <Button href="/contact" className="w-full" size="md" withArrow>
+                <Button
+                  href="/contact"
+                  className="w-full"
+                  size="md"
+                  withArrow
+                  cmsKey="button:nav.requestConsultation"
+                  styles={styles}
+                >
                   {t('requestConsultation')}
                 </Button>
               </div>

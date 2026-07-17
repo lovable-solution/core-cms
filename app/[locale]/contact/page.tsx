@@ -10,6 +10,9 @@ import { Reveal } from '@/components/ui/Reveal';
 import { ContactForm } from '@/components/ui/ContactForm';
 import { DualClock } from '@/components/ui/DualClock';
 import { siteConfig } from '@/lib/utils';
+import { getElementStyles } from '@/lib/styles';
+import { styleFromOverride, type CmsStyleMap } from '@/lib/styleOverride';
+import { CmsIcon } from '@/components/cms/CmsIcon';
 
 export async function generateMetadata({
   params,
@@ -28,10 +31,11 @@ export default async function ContactPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <ContactPageInner />;
+  const styles = await getElementStyles();
+  return <ContactPageInner styles={styles} />;
 }
 
-function ContactPageInner() {
+function ContactPageInner({ styles }: { styles: CmsStyleMap }) {
   const hero = useTranslations('pageHero.contact');
   const t = useTranslations('contact');
 
@@ -42,6 +46,7 @@ function ContactPageInner() {
         index={hero('index')}
         title={hero('title')}
         keyPrefix="pageHero.contact"
+        styles={styles}
       />
 
       <section className="py-20">
@@ -54,33 +59,52 @@ function ContactPageInner() {
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-signal opacity-75" />
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-signal" />
                   </span>
-                  {t('statusBadge')}
+                  <span
+                    data-cms-key="content:contact.statusBadge"
+                    style={styleFromOverride(styles['content:contact.statusBadge'])}
+                  >
+                    {t('statusBadge')}
+                  </span>
                 </div>
                 <div className="mt-6">
                   <DualClock />
                 </div>
-                <p className="mt-6 text-sm leading-relaxed text-muted">
+                <p
+                  className="mt-6 text-sm leading-relaxed text-muted"
+                  data-cms-key="content:contact.statusBody"
+                  style={styleFromOverride(styles['content:contact.statusBody'])}
+                >
                   {t('statusBody')}
                 </p>
               </div>
 
               <Info
                 icon={Mail}
+                iconKey="icon:contact.info.email"
                 label={t('info.email.label')}
+                labelKey="content:contact.info.email.label"
                 value={siteConfig.email}
                 href={`mailto:${siteConfig.email}`}
+                styles={styles}
               />
               <Info
                 icon={LinkedinIcon}
                 label={t('info.linkedin.label')}
+                labelKey="content:contact.info.linkedin.label"
                 value={t('info.linkedin.value')}
+                valueKey="content:contact.info.linkedin.value"
                 href={siteConfig.linkedin}
                 external
+                styles={styles}
               />
               <Info
                 icon={MapPin}
+                iconKey="icon:contact.info.regions"
                 label={t('info.regions.label')}
+                labelKey="content:contact.info.regions.label"
                 value={t('info.regions.value')}
+                valueKey="content:contact.info.regions.value"
+                styles={styles}
               />
             </div>
           </Reveal>
@@ -100,27 +124,45 @@ function ContactPageInner() {
 
 function Info({
   icon: Icon,
+  iconKey,
   label,
+  labelKey,
   value,
+  valueKey,
   href,
   external,
+  styles,
 }: {
   icon: ElementType;
+  iconKey?: string;
   label: string;
+  labelKey: string;
   value: string;
+  valueKey?: string;
   href?: string;
   external?: boolean;
+  styles: CmsStyleMap;
 }) {
   const inner = (
     <div className="flex items-start gap-4">
       <div className="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-full border border-line bg-surface/60">
-        <Icon className="h-4 w-4 text-signal" strokeWidth={1.5} />
+        {iconKey ? (
+          <CmsIcon cmsKey={iconKey} icon={Icon as never} styles={styles} className="h-4 w-4 text-signal" strokeWidth={1.5} />
+        ) : (
+          <Icon className="h-4 w-4 text-signal" strokeWidth={1.5} />
+        )}
       </div>
       <div>
-        <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-subtle">
+        <div
+          className="font-mono text-[11px] uppercase tracking-[0.2em] text-subtle"
+          data-cms-key={labelKey}
+          style={styleFromOverride(styles[labelKey])}
+        >
           {label}
         </div>
-        <div className="mt-1 text-fg">{value}</div>
+        <div className="mt-1 text-fg" data-cms-key={valueKey} style={valueKey ? styleFromOverride(styles[valueKey]) : undefined}>
+          {value}
+        </div>
       </div>
     </div>
   );

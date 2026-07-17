@@ -4,6 +4,7 @@ import { forwardRef } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
+import { styleFromOverride, type CmsStyleMap } from '@/lib/styleOverride';
 
 type Variant = 'primary' | 'secondary' | 'ghost' | 'outline';
 type Size = 'sm' | 'md' | 'lg';
@@ -14,6 +15,9 @@ interface BaseProps {
   withArrow?: boolean;
   className?: string;
   children: React.ReactNode;
+  /** When set, this instance becomes CMS-editable (label/variant/size/radius/position). */
+  cmsKey?: string;
+  styles?: CmsStyleMap;
 }
 
 const baseStyles =
@@ -43,10 +47,16 @@ type ButtonProps = BaseProps &
   );
 
 export const Button = forwardRef<HTMLElement, ButtonProps>(function Button(
-  { variant = 'primary', size = 'md', withArrow = false, className, children, ...props },
+  { variant = 'primary', size = 'md', withArrow = false, className, children, cmsKey, styles, ...props },
   ref,
 ) {
-  const classes = cn(baseStyles, variants[variant], sizes[size], className);
+  const override = cmsKey ? styles?.[cmsKey] : undefined;
+  const effectiveVariant = override?.buttonVariant ?? variant;
+  const effectiveSize = override?.buttonSize ?? size;
+  const overrideStyle = styleFromOverride(override);
+  const cmsProps = cmsKey ? { 'data-cms-key': cmsKey, style: overrideStyle } : {};
+
+  const classes = cn(baseStyles, variants[effectiveVariant], sizes[effectiveSize], className);
 
   const content = (
     <>
@@ -70,6 +80,7 @@ export const Button = forwardRef<HTMLElement, ButtonProps>(function Button(
           href={href}
           className={classes}
           {...rest}
+          {...cmsProps}
         >
           {content}
         </a>
@@ -82,6 +93,7 @@ export const Button = forwardRef<HTMLElement, ButtonProps>(function Button(
         locale={locale}
         className={classes}
         {...rest}
+        {...cmsProps}
       >
         {content}
       </Link>
@@ -92,6 +104,7 @@ export const Button = forwardRef<HTMLElement, ButtonProps>(function Button(
       ref={ref as React.Ref<HTMLButtonElement>}
       className={classes}
       {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+      {...cmsProps}
     >
       {content}
     </button>

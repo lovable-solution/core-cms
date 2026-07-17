@@ -8,17 +8,19 @@ import {
   Users,
   Gauge,
   ScrollText,
-  type LucideIcon,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { Reveal } from '@/components/ui/Reveal';
 import { Marquee } from '@/components/ui/Marquee';
+import { CmsIcon } from '@/components/cms/CmsIcon';
+import { styleFromOverride, type CmsStyleMap } from '@/lib/styleOverride';
+import type { LucideIcon } from 'lucide-react';
 
 const icons: LucideIcon[] = [LineChart, ClipboardCheck, ScrollText, Shield, Users, Gauge];
 
-export function WhatYouCanGet() {
+export function WhatYouCanGet({ styles }: { styles: CmsStyleMap }) {
   const t = useTranslations('whatYouCanGet');
   const items = t.raw('items') as { title: string; desc: string }[];
 
@@ -33,9 +35,14 @@ export function WhatYouCanGet() {
             eyebrowKey="whatYouCanGet.eyebrow"
             titleKey="whatYouCanGet.title"
             descriptionKey="whatYouCanGet.description"
+            styles={styles}
           />
           <Reveal delay={0.2}>
-            <div className="font-mono text-xs uppercase tracking-[0.2em] text-subtle">
+            <div
+              className="font-mono text-xs uppercase tracking-[0.2em] text-subtle"
+              data-cms-key="content:whatYouCanGet.count"
+              style={styleFromOverride(styles['content:whatYouCanGet.count'])}
+            >
               {t('count')}
             </div>
           </Reveal>
@@ -43,7 +50,9 @@ export function WhatYouCanGet() {
 
         <div className="mt-16 grid grid-cols-1 divide-y divide-line border-y border-line md:grid-cols-2 md:divide-x md:divide-y-0 lg:grid-cols-3">
           {items.map((s, i) => {
-            const Icon = icons[i] ?? LineChart;
+            const titleKey = `content:whatYouCanGet.items.${i}.title`;
+            const descKey = `content:whatYouCanGet.items.${i}.desc`;
+            const iconKey = `icon:whatYouCanGet.items.${i}`;
             const n = String(i + 1).padStart(2, '0');
             return (
               <motion.div
@@ -57,26 +66,35 @@ export function WhatYouCanGet() {
                 <div>
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-xs text-subtle">{n}</span>
-                    <Icon
+                    <CmsIcon
+                      cmsKey={iconKey}
+                      icon={icons[i] ?? LineChart}
+                      styles={styles}
                       className="h-5 w-5 text-subtle transition-colors group-hover:text-signal"
                       strokeWidth={1.5}
                     />
                   </div>
                   <h3
                     className="mt-8 font-display text-2xl leading-tight text-fg"
-                    data-cms-key={`content:whatYouCanGet.items.${i}.title`}
+                    data-cms-key={titleKey}
+                    style={styleFromOverride(styles[titleKey])}
                   >
                     {s.title}
                   </h3>
                   <p
                     className="mt-4 text-sm leading-relaxed text-muted"
-                    data-cms-key={`content:whatYouCanGet.items.${i}.desc`}
+                    data-cms-key={descKey}
+                    style={styleFromOverride(styles[descKey])}
                   >
                     {s.desc}
                   </p>
                 </div>
                 <div className="inline-flex items-center gap-2 text-sm text-subtle transition-colors group-hover:text-signal">
-                  <span className="font-mono uppercase tracking-wider">
+                  <span
+                    className="font-mono uppercase tracking-wider"
+                    data-cms-key="content:whatYouCanGet.capability"
+                    style={styleFromOverride(styles['content:whatYouCanGet.capability'])}
+                  >
                     {t('capability')}
                   </span>
                   <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 flip-rtl" />

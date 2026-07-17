@@ -8,9 +8,13 @@ import { Link } from '@/i18n/routing';
 import { Reveal, RevealText } from '@/components/ui/Reveal';
 import { GridLines, RadialGlow } from '@/components/ui/GridLines';
 import { mediaImageStyle, type MediaSlotValue } from '@/lib/mediaTypes';
+import { styleFromOverride, type CmsStyleMap } from '@/lib/styleOverride';
+import { CmsIcon } from '@/components/cms/CmsIcon';
 
-export function CoreSystems({ image }: { image: MediaSlotValue }) {
+export function CoreSystems({ image, styles }: { image: MediaSlotValue; styles: CmsStyleMap }) {
   const t = useTranslations('coreSystems');
+  const futureModules = t.raw('futureModules') as string[];
+
   return (
     <section id="systems" className="relative overflow-hidden border-t border-line bg-bg py-24 md:py-32">
       <RadialGlow from="rgba(230,47,77,0.06)" className="top-0" />
@@ -19,15 +23,23 @@ export function CoreSystems({ image }: { image: MediaSlotValue }) {
         <div className="flex flex-col items-start justify-between gap-10 md:flex-row md:items-end">
           <div className="max-w-3xl">
             <Reveal>
-              <span className="eyebrow" data-cms-key="content:coreSystems.eyebrow">
+              <span
+                className="eyebrow"
+                data-cms-key="content:coreSystems.eyebrow"
+                style={styleFromOverride(styles['content:coreSystems.eyebrow'])}
+              >
                 {t('eyebrow')}
               </span>
             </Reveal>
             <h2 className="mt-6 font-display text-display-xs text-balance tracking-tighter text-fg">
-              <span data-cms-key="content:coreSystems.title1">
+              <span data-cms-key="content:coreSystems.title1" style={styleFromOverride(styles['content:coreSystems.title1'])}>
                 <RevealText text={t('title1')} />
               </span>{' '}
-              <span className="text-gradient-warm" data-cms-key="content:coreSystems.title2">
+              <span
+                className="text-gradient-warm"
+                data-cms-key="content:coreSystems.title2"
+                style={styleFromOverride(styles['content:coreSystems.title2'])}
+              >
                 <RevealText text={t('title2')} delay={0.15} />
               </span>
             </h2>
@@ -36,6 +48,7 @@ export function CoreSystems({ image }: { image: MediaSlotValue }) {
             <p
               className="max-w-sm text-pretty leading-relaxed text-muted"
               data-cms-key="content:coreSystems.description"
+              style={styleFromOverride(styles['content:coreSystems.description'])}
             >
               {t('description')}
             </p>
@@ -53,21 +66,33 @@ export function CoreSystems({ image }: { image: MediaSlotValue }) {
             <div>
               <div className="flex flex-wrap items-center gap-3">
                 <span className="inline-flex items-center gap-2 rounded-full border border-signal/40 bg-signal/10 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-signal">
-                  <Cpu className="h-3.5 w-3.5" /> {t('flagship')}
+                  <CmsIcon cmsKey="icon:coreSystems.flagshipBadge" icon={Cpu} styles={styles} className="h-3.5 w-3.5" />
+                  <span
+                    data-cms-key="content:coreSystems.flagship"
+                    style={styleFromOverride(styles['content:coreSystems.flagship'])}
+                  >
+                    {t('flagship')}
+                  </span>
                 </span>
-                <span className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-muted">
+                <span
+                  className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-muted"
+                  data-cms-key="content:coreSystems.pilotStatus"
+                  style={styleFromOverride(styles['content:coreSystems.pilotStatus'])}
+                >
                   {t('pilotStatus')}
                 </span>
               </div>
               <h3
                 className="mt-6 font-display text-3xl leading-tight text-fg md:text-4xl"
                 data-cms-key="content:coreSystems.hpeTitle"
+                style={styleFromOverride(styles['content:coreSystems.hpeTitle'])}
               >
                 {t('hpeTitle')}
               </h3>
               <p
                 className="mt-5 max-w-lg text-pretty leading-relaxed text-muted"
                 data-cms-key="content:coreSystems.hpeDesc"
+                style={styleFromOverride(styles['content:coreSystems.hpeDesc'])}
               >
                 {t('hpeDesc')}
               </p>
@@ -75,7 +100,11 @@ export function CoreSystems({ image }: { image: MediaSlotValue }) {
 
             <div className="grid gap-6">
               <div>
-                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-signal">
+                <div
+                  className="font-mono text-[11px] uppercase tracking-[0.2em] text-signal"
+                  data-cms-key="content:coreSystems.currentPhase"
+                  style={styleFromOverride(styles['content:coreSystems.currentPhase'])}
+                >
                   {t('currentPhase')}
                 </div>
                 <div className="mt-3 flex flex-wrap gap-2">
@@ -83,12 +112,21 @@ export function CoreSystems({ image }: { image: MediaSlotValue }) {
                 </div>
               </div>
               <div>
-                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-subtle">
+                <div
+                  className="font-mono text-[11px] uppercase tracking-[0.2em] text-subtle"
+                  data-cms-key="content:coreSystems.futurePhase"
+                  style={styleFromOverride(styles['content:coreSystems.futurePhase'])}
+                >
                   {t('futurePhase')}
                 </div>
                 <div className="mt-3 flex flex-wrap gap-2">
-                  {['Resource', 'Analytics', 'Documents', 'Assets'].map((m) => (
-                    <ModuleChip key={m} label={m} />
+                  {futureModules.map((m, i) => (
+                    <ModuleChip
+                      key={m}
+                      label={m}
+                      cmsKey={`content:coreSystems.futureModules.${i}`}
+                      styles={styles}
+                    />
                   ))}
                 </div>
               </div>
@@ -99,7 +137,12 @@ export function CoreSystems({ image }: { image: MediaSlotValue }) {
                 href="/products#hpe"
                 className="group inline-flex items-center gap-2 text-sm font-medium text-fg hover:text-signal"
               >
-                {t('exploreEngine')}
+                <span
+                  data-cms-key="content:coreSystems.exploreEngine"
+                  style={styleFromOverride(styles['content:coreSystems.exploreEngine'])}
+                >
+                  {t('exploreEngine')}
+                </span>
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 flip-rtl" />
               </Link>
             </div>
@@ -133,19 +176,27 @@ export function CoreSystems({ image }: { image: MediaSlotValue }) {
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           <SystemCard
             icon={Radar}
+            iconKey="icon:coreSystems.sss"
             name={t('sss.name')}
+            nameKey="content:coreSystems.sss.name"
             desc={t('sss.desc')}
+            descKey="content:coreSystems.sss.desc"
             img="/images/section4/2.webp"
             href="/products#sss"
             exploreLabel={t('exploreSystem')}
+            styles={styles}
           />
           <SystemCard
             icon={Wind}
+            iconKey="icon:coreSystems.sms"
             name={t('sms.name')}
+            nameKey="content:coreSystems.sms.name"
             desc={t('sms.desc')}
+            descKey="content:coreSystems.sms.desc"
             img="/images/section4/3.webp"
             href="/products#sms"
             exploreLabel={t('exploreSystem')}
+            styles={styles}
           />
         </div>
       </div>
@@ -153,7 +204,17 @@ export function CoreSystems({ image }: { image: MediaSlotValue }) {
   );
 }
 
-function ModuleChip({ label, live = false }: { label: string; live?: boolean }) {
+function ModuleChip({
+  label,
+  live = false,
+  cmsKey,
+  styles,
+}: {
+  label: string;
+  live?: boolean;
+  cmsKey?: string;
+  styles?: CmsStyleMap;
+}) {
   return (
     <span
       className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs ${
@@ -161,6 +222,8 @@ function ModuleChip({ label, live = false }: { label: string; live?: boolean }) 
           ? 'border-signal/50 bg-signal/10 text-signal'
           : 'border-line bg-surface/50 text-muted'
       }`}
+      data-cms-key={cmsKey}
+      style={cmsKey ? styleFromOverride(styles?.[cmsKey]) : undefined}
     >
       {live && <span className="h-1.5 w-1.5 rounded-full bg-signal animate-pulse" />}
       {label}
@@ -178,19 +241,27 @@ function Metric({ label, val }: { label: string; val: string }) {
 }
 
 function SystemCard({
-  icon: Icon,
+  icon,
+  iconKey,
   name,
+  nameKey,
   desc,
+  descKey,
   img,
   href,
   exploreLabel,
+  styles,
 }: {
   icon: LucideIcon;
+  iconKey: string;
   name: string;
+  nameKey: string;
   desc: string;
+  descKey: string;
   img: string;
   href: string;
   exploreLabel: string;
+  styles: CmsStyleMap;
 }) {
   return (
     <Link
@@ -206,14 +277,25 @@ function SystemCard({
           className="object-cover transition-transform duration-700 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/20 to-transparent" />
-        <Icon
+        <CmsIcon
+          cmsKey={iconKey}
+          icon={icon}
+          styles={styles}
           className="absolute start-5 top-5 h-6 w-6 text-ink-100"
           strokeWidth={1.5}
         />
       </div>
       <div className="p-6 md:p-8">
-        <h4 className="font-display text-2xl leading-tight text-fg">{name}</h4>
-        <p className="mt-3 text-sm leading-relaxed text-muted">{desc}</p>
+        <h4
+          className="font-display text-2xl leading-tight text-fg"
+          data-cms-key={nameKey}
+          style={styleFromOverride(styles[nameKey])}
+        >
+          {name}
+        </h4>
+        <p className="mt-3 text-sm leading-relaxed text-muted" data-cms-key={descKey} style={styleFromOverride(styles[descKey])}>
+          {desc}
+        </p>
         <div className="mt-5 inline-flex items-center gap-2 text-sm text-fg/90 group-hover:text-signal">
           {exploreLabel}
           <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 flip-rtl" />

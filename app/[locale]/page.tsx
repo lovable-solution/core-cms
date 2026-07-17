@@ -8,6 +8,7 @@ import { PilotPartners } from '@/components/sections/PilotPartners';
 import { WhyCore } from '@/components/sections/WhyCore';
 import { FinalCTA } from '@/components/sections/FinalCTA';
 import { getMediaSlot } from '@/lib/media';
+import { getElementStyles } from '@/lib/styles';
 
 export default async function HomePage({
   params,
@@ -17,22 +18,23 @@ export default async function HomePage({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const [howCoreWorksImage, coreSystemsImage, pilotPartnersImage] = await Promise.all([
+  const [howCoreWorksImage, coreSystemsImage, pilotPartnersImage, styles] = await Promise.all([
     getMediaSlot('howCoreWorks.image', '/images/section3/1.webp'),
     getMediaSlot('coreSystems.image', '/images/section4/1.webp'),
     getMediaSlot('pilotPartners.image', '/images/section5/1.webp'),
+    getElementStyles(),
   ]);
 
   return (
     <>
-      <Hero />
-      <WhatYouCanGet />
-      <HowCoreWorks image={howCoreWorksImage} />
-      <CoreSystems image={coreSystemsImage} />
-      <HPEInteractive />
-      <PilotPartners image={pilotPartnersImage} />
-      <WhyCore />
-      <FinalCTA />
+      <Hero styles={styles} />
+      <WhatYouCanGet styles={styles} />
+      <HowCoreWorks image={howCoreWorksImage} styles={styles} />
+      <CoreSystems image={coreSystemsImage} styles={styles} />
+      <HPEInteractive styles={styles} />
+      <PilotPartners image={pilotPartnersImage} styles={styles} />
+      <WhyCore styles={styles} />
+      <FinalCTA styles={styles} />
     </>
   );
 }

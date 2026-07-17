@@ -1,15 +1,45 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-
-const CMS_ORIGIN = process.env.NEXT_PUBLIC_CMS_URL ?? 'http://localhost:3001';
+import { useRouter } from 'next/navigation';
 
 type HoverRect = { top: number; left: number; width: number; height: number; label: string } | null;
+
+type CmsKind = 'content' | 'media' | 'icon' | 'button';
+
+function kindFor(key: string): CmsKind {
+  const [kind] = key.split(':');
+  if (kind === 'media' || kind === 'icon' || kind === 'button') return kind;
+  return 'content';
+}
+
+function computedStyleSnapshot(target: HTMLElement) {
+  const cs = window.getComputedStyle(target);
+  return {
+    fontSize: parseFloat(cs.fontSize) || undefined,
+    fontWeight: parseInt(cs.fontWeight, 10) || undefined,
+    color: cs.color,
+    textAlign: cs.textAlign,
+    borderRadius: parseFloat(cs.borderRadius) || undefined,
+  };
+}
 
 export function EditOverlay({ enabled }: { enabled: boolean }) {
   const [rect, setRect] = useState<HoverRect>(null);
   const targetRef = useRef<HTMLElement | null>(null);
   const inIframeRef = useRef(false);
+  const router = useRouter();
+
+  // Inbound bridge: the admin shell tells this frame to re-fetch server data
+  // (after a save) without a full reload, so scroll position/state survive.
+  useEffect(() => {
+    function onMessage(e: MessageEvent) {
+      if (e.source !== window.parent) return;
+      if (e.data?.type === 'cms:refresh') router.refresh();
+    }
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, [router]);
 
   useEffect(() => {
     if (!enabled) return;
@@ -60,10 +90,13 @@ export function EditOverlay({ enabled }: { enabled: boolean }) {
         {
           type: 'cms:edit',
           key,
+          kind: kindFor(key),
           value,
+          tagName: target.tagName.toLowerCase(),
           rect: { top: r.top, left: r.left, width: r.width, height: r.height },
+          computedStyle: computedStyleSnapshot(target),
         },
-        CMS_ORIGIN,
+        window.location.origin,
       );
     }
 
@@ -122,5 +155,7 @@ export function EditOverlay({ enabled }: { enabled: boolean }) {
 function labelFor(key: string): string {
   const [kind, path] = key.split(':');
   if (kind === 'media') return `Image · click to replace`;
+  if (kind === 'icon') return `Icon · click to change`;
+  if (kind === 'button') return `Button · click to edit`;
   return path ?? key;
 }

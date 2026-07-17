@@ -3,6 +3,11 @@ import { Wand2, LayoutDashboard, FileText, Palette, Type, Image as ImageIcon, Ex
 import { PublishButton } from '@/components/admin/PublishButton';
 import { LogoutButton } from '@/components/admin/LogoutButton';
 
+// These pages are behind login and read live, constantly-changing CMS state via
+// Prisma — never statically generate them (which would run DB queries at build
+// time and freeze the output) or cache them across requests.
+export const dynamic = 'force-dynamic';
+
 const navItems = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/admin/content/en', label: 'Content (EN)', icon: FileText },

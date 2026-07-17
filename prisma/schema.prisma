@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model ContentDoc {
+  id        String   @id @default(cuid())
+  locale    String   @unique
+  draft     Json
+  published Json
+  updatedAt DateTime @updatedAt
+}
+
+model ThemeConfig {
+  id        String   @id @default(cuid())
+  draft     Json
+  published Json
+  updatedAt DateTime @updatedAt
+}
+
+model TypographyConfig {
+  id        String   @id @default(cuid())
+  draft     Json
+  published Json
+  updatedAt DateTime @updatedAt
+}
+
+model MediaAsset {
+  id        String   @id @default(cuid())
+  slotKey   String   @unique
+  draft     Json     // {url, alt, focalX, focalY, scale}
+  published Json     // same shape
+  updatedAt DateTime @updatedAt
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}

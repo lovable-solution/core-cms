@@ -1,8 +1,8 @@
 'use client';
 
 import { forwardRef } from 'react';
-import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
+import { Link } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
 
 type Variant = 'primary' | 'secondary' | 'ghost' | 'outline';
@@ -38,7 +38,7 @@ const sizes: Record<Size, string> = {
 
 type ButtonProps = BaseProps &
   (
-    | ({ href: string } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'className' | 'children' | 'href'>)
+    | ({ href: string; locale?: 'en' | 'ar' } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'className' | 'children' | 'href'>)
     | ({ href?: undefined } & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'className' | 'children'>)
   );
 
@@ -53,7 +53,7 @@ export const Button = forwardRef<HTMLElement, ButtonProps>(function Button(
       <span className="relative z-10">{children}</span>
       {withArrow && (
         <ArrowUpRight
-          className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+          className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 flip-rtl"
           strokeWidth={2}
         />
       )}
@@ -61,11 +61,25 @@ export const Button = forwardRef<HTMLElement, ButtonProps>(function Button(
   );
 
   if ('href' in props && props.href) {
-    const { href, ...rest } = props as { href: string } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
+    const { href, locale, ...rest } = props as { href: string; locale?: 'en' | 'ar' } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
+    // External or anchor links pass through to plain anchor
+    if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('#')) {
+      return (
+        <a
+          ref={ref as React.Ref<HTMLAnchorElement>}
+          href={href}
+          className={classes}
+          {...rest}
+        >
+          {content}
+        </a>
+      );
+    }
     return (
       <Link
         ref={ref as React.Ref<HTMLAnchorElement>}
-        href={href}
+        href={href as never}
+        locale={locale}
         className={classes}
         {...rest}
       >

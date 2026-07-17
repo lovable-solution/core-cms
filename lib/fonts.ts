@@ -4,15 +4,6 @@ export const MONO_FONTS = ['JetBrains Mono', 'Roboto Mono', 'Fira Code', 'IBM Pl
 export const ARABIC_FONTS = ['Noto Sans Arabic', 'Cairo', 'Tajawal', 'IBM Plex Sans Arabic'];
 export const ARABIC_DISPLAY_FONTS = ['Noto Kufi Arabic', 'Cairo', 'Tajawal', 'Almarai'];
 
-export type TypographyTokens = {
-  sans: string;
-  display: string;
-  mono: string;
-  arabic: string;
-  arabicDisplay: string;
-  scale: number;
-};
-
 const ALL_FAMILIES = Array.from(
   new Set([...SANS_FONTS, ...DISPLAY_FONTS, ...MONO_FONTS, ...ARABIC_FONTS, ...ARABIC_DISPLAY_FONTS]),
 );

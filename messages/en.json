@@ -1,0 +1,668 @@
+{
+  "meta": {
+    "home": {
+      "title": "Core: Human Performance in Safety-Critical Operations",
+      "description": "Consulting and intelligent systems designed to improve safety, performance, and operational reliability across complex environments."
+    },
+    "about": {
+      "title": "About",
+      "description": "Consultancy and product business focused on human performance and operational excellence. Operating across the UK and Middle East."
+    },
+    "services": {
+      "title": "Services",
+      "description": "Specialist operational services spanning human factors, operational excellence, compliance and assurance, digital transformation and AI, competency and technical training, commercial support, legacy modernisation and bespoke systems."
+    },
+    "products": {
+      "title": "Products",
+      "description": "A modular operational intelligence platform for safety-critical industries: workforce planning, environmental intelligence, operational documentation and bespoke systems."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Get in touch with Core: consulting, pilot partnership, product enquiry or general questions."
+    }
+  },
+  "nav": {
+    "services": "Services",
+    "products": "Products",
+    "about": "About",
+    "contact": "Contact",
+    "requestConsultation": "Request Consultation",
+    "skipToContent": "Skip to content",
+    "toggleTheme": "Toggle theme",
+    "toggleLanguage": "Change language",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "commandHint": "Press ⌘K"
+  },
+  "commandPalette": {
+    "placeholder": "Search navigation, services, products…",
+    "empty": "No results found.",
+    "groups": {
+      "navigate": "Navigate",
+      "services": "Services",
+      "products": "Products",
+      "actions": "Actions"
+    },
+    "actions": {
+      "toggleTheme": "Toggle theme",
+      "switchLanguage": "Switch language",
+      "contact": "Request consultation",
+      "pilot": "Apply as pilot partner"
+    }
+  },
+  "footer": {
+    "sections": {
+      "services": "Services",
+      "products": "Products",
+      "company": "Company"
+    },
+    "legal": {
+      "registered": "Registered in England & Wales",
+      "version": "v1.0 · Safety-Critical Operations"
+    }
+  },
+  "hero": {
+    "eyebrow": "Consulting · Systems · Since 2024",
+    "badge": "Onboarding pilot partners",
+    "headline1": "Optimising",
+    "headline2": "Human Performance",
+    "headline3": "in Safety-Critical",
+    "headline4": "Operations.",
+    "subheading": "Consulting and intelligent systems designed to improve safety, performance, and operational reliability across complex environments.",
+    "cta1": "Request a Consultation",
+    "cta2": "Become a Pilot Partner",
+    "metaEyebrow": "Proven delivery",
+    "metaBody": "Major rail operations in the Middle East. Director-level turnaround experience across complex infrastructure environments.",
+    "stats": {
+      "sectors": "Sectors",
+      "regions": "Regions",
+      "phase": "Phase"
+    },
+    "scroll": "Scroll"
+  },
+  "whatYouCanGet": {
+    "eyebrow": "What You Can Get From Core",
+    "title": "Practical support. Measurable results.",
+    "description": "Specialist consulting and performance solutions designed to deliver immediate impact across safety-critical operations.",
+    "count": "06 capabilities · delivered end-to-end",
+    "items": [
+      {
+        "title": "Continuous Improvement Programmes",
+        "desc": "Lean-based improvement, KPI frameworks, and process optimisation that move the numbers."
+      },
+      {
+        "title": "ISO 9001 / 14001 / 45001 Readiness",
+        "desc": "Gap analysis, implementation support and audit preparation for certified readiness."
+      },
+      {
+        "title": "Operational Audits & Reviews",
+        "desc": "Operational audits, safety inspections and performance diagnostics with actionable insight."
+      },
+      {
+        "title": "Human Factors & Performance",
+        "desc": "Fatigue, cognitive load, behavioural safety and task-based risk: the people layer."
+      },
+      {
+        "title": "Competency & Training Systems",
+        "desc": "Competency frameworks, skill tracking and training programme development at scale."
+      },
+      {
+        "title": "Fatigue & Risk Management",
+        "desc": "Evidence-led fatigue risk management for high-risk, continuous operations."
+      }
+    ],
+    "capability": "Capability"
+  },
+  "howCoreWorks": {
+    "eyebrow": "Section 03: How Core Works",
+    "title1": "Consulting expertise.",
+    "title2": "Built for real operations.",
+    "description": "Core combines real-world operational experience with data-driven thinking to improve how organisations plan, manage, and deliver work. From frontline operations to strategic leadership.",
+    "overlayEyebrow": "On-site · Field-led",
+    "overlayTitle": "We operate where the work happens.",
+    "steps": [
+      {
+        "title": "Understand",
+        "desc": "Deep operational review rooted in frontline reality. We listen first, map the terrain, and define what success actually looks like."
+      },
+      {
+        "title": "Align",
+        "desc": "We align people, performance and systems, so strategy does not stall at the frontline and decisions move faster."
+      },
+      {
+        "title": "Deliver",
+        "desc": "Real operators. Data-driven methods. We focus on practical, measurable improvements you can evidence."
+      }
+    ]
+  },
+  "coreSystems": {
+    "eyebrow": "Section 04: Core Systems",
+    "title1": "Building the future of",
+    "title2": "human performance.",
+    "description": "A modular suite of systems designed to transform how organisations manage workforce performance and risk.",
+    "flagship": "Flagship",
+    "pilotStatus": "Entering pilot phase",
+    "hpeTitle": "Human Performance Engine",
+    "hpeDesc": "A next-generation system combining fatigue, competency, and performance data into one intelligent, modular platform.",
+    "currentPhase": "Current phase: available now",
+    "futurePhase": "Future phase",
+    "exploreEngine": "Explore the engine",
+    "exploreSystem": "Explore system",
+    "sss": {
+      "name": "Smart Safety & Performance Station",
+      "desc": "Depot and site interface: digital sign-in, briefings, live KPIs and biometrics in one station."
+    },
+    "sms": {
+      "name": "Environmental Risk & Sand Mitigation System",
+      "desc": "Wind and weather monitoring, sand risk analysis and early warnings, built for desert infrastructure."
+    }
+  },
+  "hpeDemo": {
+    "eyebrow": "Interactive · Module Explorer",
+    "title": "Compose the engine to your operation.",
+    "description": "The Human Performance Engine is modular by design. Toggle modules below to preview how they combine into a single operational view.",
+    "modules": {
+      "fatigue": {
+        "name": "Fatigue Management",
+        "metric": "Risk Index",
+        "status": "LIVE"
+      },
+      "competency": {
+        "name": "Competency Management",
+        "metric": "Coverage",
+        "status": "LIVE"
+      },
+      "resource": {
+        "name": "Resource Planning",
+        "metric": "Utilisation",
+        "status": "ROADMAP"
+      },
+      "analytics": {
+        "name": "Performance Analytics",
+        "metric": "Trend",
+        "status": "ROADMAP"
+      },
+      "document": {
+        "name": "Document Management",
+        "metric": "Controlled",
+        "status": "ROADMAP"
+      },
+      "asset": {
+        "name": "Asset Management",
+        "metric": "Availability",
+        "status": "ROADMAP"
+      }
+    },
+    "summary": "Selected modules",
+    "readiness": "Operational readiness",
+    "available": "Available at pilot",
+    "roadmap": "On roadmap"
+  },
+  "pilot": {
+    "badge": "Now Onboarding: UK & Dubai",
+    "eyebrow": "Section 05: Pilot Programme",
+    "title1": "Shape the system.",
+    "title2": "Gain the advantage.",
+    "description": "Core is onboarding a limited number of pilot partners across the UK and Middle East to support first-phase deployment of the Human Performance Engine, for organisations taking a proactive approach to safety, performance and efficiency through data-driven systems.",
+    "coverEyebrow": "Pilot: Phase 01",
+    "coverTitle": "Collaborative by design.",
+    "coverDesc": "Defined objectives, timelines and review points to ensure measurable outcomes.",
+    "involvesEyebrow": "What the Pilot Involves",
+    "involves": [
+      "Initial operational review and alignment",
+      "Configuration of core modules (fatigue, competency, performance)",
+      "Integration with existing processes where possible",
+      "Ongoing refinement based on real-world use",
+      "Direct collaboration with Core during development"
+    ],
+    "idealEyebrow": "Ideal Pilot Partner",
+    "idealDesc": "Organisations operating in safety-critical or high-risk environments, open to innovation, focused on measurable performance, and able to commit to collaboration during pilot.",
+    "benefitsEyebrow": "Key Benefits",
+    "benefits": [
+      {
+        "title": "Early Access",
+        "desc": "Be among the first organisations to implement a next-generation human performance system before wider market release."
+      },
+      {
+        "title": "Preferred Commercial Terms",
+        "desc": "Pilot partners receive favourable commercial arrangements in recognition of early adoption and collaboration."
+      },
+      {
+        "title": "Influence on Development",
+        "desc": "Direct input into system functionality, ensuring alignment with real operational challenges and requirements."
+      },
+      {
+        "title": "Tailored Implementation",
+        "desc": "The system will be adapted to your specific operational environment, rather than a one-size-fits-all approach."
+      },
+      {
+        "title": "Strategic Advantage",
+        "desc": "Gain early insight into workforce performance trends, risk exposure and optimisation opportunities ahead of competitors."
+      }
+    ],
+    "ctaEyebrow": "Apply to join: limited cohort",
+    "ctaTitle": "Ready to shape the next generation of performance systems?",
+    "cta1": "Apply to Become a Pilot Partner",
+    "cta2": "Request an Initial Discussion"
+  },
+  "whyCore": {
+    "eyebrow": "Section 06: Why Core",
+    "title1": "Built on experience.",
+    "title2": "Designed for impact.",
+    "stats": [
+      {
+        "label": "Industry sectors"
+      },
+      {
+        "label": "Strategic regions"
+      },
+      {
+        "label": "Safety-critical focus"
+      }
+    ],
+    "points": [
+      {
+        "label": "Leadership",
+        "title": "Director-level operational experience",
+        "desc": "We have run the operations we consult on. Decisions come from scar tissue, not slides."
+      },
+      {
+        "label": "Track Record",
+        "title": "Proven in complex project environments",
+        "desc": "Delivered under real operational constraints across demanding, safety-critical infrastructure environments."
+      },
+      {
+        "label": "Expertise",
+        "title": "Deep expertise in human factors & performance",
+        "desc": "Fatigue, cognitive load, behavioural safety, task risk: the unseen layer that drives incident rates."
+      },
+      {
+        "label": "Outcomes",
+        "title": "Focused on practical, measurable improvements",
+        "desc": "No theoretical frameworks. Only improvements you can evidence and defend to a board."
+      }
+    ]
+  },
+  "finalCTA": {
+    "eyebrow": "Start the Conversation",
+    "title": "Let's discuss how core+ can help your organisation perform at its best.",
+    "subtext": "Whether you're exploring a product, seeking specialist operational support or looking to develop a bespoke solution, we'd love to hear from you.",
+    "cta": "Contact Us"
+  },
+  "pageHero": {
+    "about": {
+      "eyebrow": "About",
+      "index": "01 / 05",
+      "title": "Operational expertise meets intelligent innovation",
+      "description": "core+ combines decades of operational leadership with intelligent technology to develop products and specialist services that improve organisational performance across safety-critical and complex operational environments."
+    },
+    "services": {
+      "eyebrow": "Services",
+      "index": "02 / 05",
+      "title": "Specialist Operational Services",
+      "description": "Operational expertise designed to improve performance, reduce risk and deliver measurable business outcomes."
+    },
+    "products": {
+      "eyebrow": "Products",
+      "index": "03 / 05",
+      "title": "A modular suite of systems for safety-critical operations.",
+      "description": "Our product ecosystem is led by the Human Performance Engine, a next-generation platform combining fatigue, competency and performance into one intelligent system."
+    },
+    "contact": {
+      "eyebrow": "Contact",
+      "index": "05 / 05",
+      "title": "Start the conversation."
+    }
+  },
+  "about": {
+    "positioning": {
+      "eyebrow": "What Makes Us Different",
+      "statement": "Built by Operators",
+      "note": "Developed by professionals with decades of leadership experience across complex infrastructure and safety-critical operations."
+    },
+    "pillars": [
+      {
+        "title": "Products & Expertise",
+        "desc": "Combining intelligent technology with specialist operational services to solve real-world business challenges."
+      },
+      {
+        "title": "Performance Focused",
+        "desc": "Everything we design is built to improve operational performance, workforce capability and organisational resilience."
+      },
+      {
+        "title": "Collaborative by Design",
+        "desc": "Whether implementing a product or developing a bespoke solution, we work alongside our clients to deliver practical, measurable outcomes."
+      },
+      {
+        "title": "Trusted Partnerships",
+        "desc": "We work collaboratively with organisations across the United Kingdom, Ireland and the Middle East to develop long-term partnerships and bespoke operational solutions."
+      }
+    ],
+    "leadershipEyebrow": "Leadership",
+    "leadershipTitle": "Founder Expertise",
+    "founders": {
+      "darryl": {
+        "name": "Chief Executive Officer",
+        "role": "Founder",
+        "tagline": "Operational leader, technology innovator and specialist in human performance.",
+        "bullets": [
+          "20+ years leading complex infrastructure, operational performance and technology programmes",
+          "Former elite golfer competing at county, national and professional level for over 30 years",
+          "Passionate about applying elite performance principles to workforce performance, leadership and intelligent systems"
+        ]
+      },
+      "will": {
+        "name": "Chief Financial Officer",
+        "role": "Founder",
+        "tagline": "Commercial strategist, investor and business growth specialist.",
+        "bullets": [
+          "Former PwC consultant with extensive commercial, financial and business development experience",
+          "Former elite golfer competing at county, national and professional level for over 30 years",
+          "Specialist in commercial strategy, investment, financial modelling and scaling technology businesses"
+        ]
+      }
+    },
+    "regional": {
+      "eyebrow": "Regional Presence",
+      "title1": "Two regions.",
+      "title2": "One operating system.",
+      "desc": "From London to Dubai, Core operates across two of the most demanding regional markets for safety-critical delivery, bringing consistent methodology to diverse operational environments."
+    }
+  },
+  "services": {
+    "items": [
+      {
+        "id": "human-factors",
+        "name": "Human Factors & Operational Performance",
+        "lead": "Helping organisations improve safety, decision-making and workforce performance by understanding the human factors that influence operational success.",
+        "items": [
+          "Fatigue risk management & workforce readiness",
+          "Human factors & non-technical skills",
+          "Competency assurance & performance optimisation"
+        ]
+      },
+      {
+        "id": "operational-excellence",
+        "name": "Operational Excellence",
+        "lead": "Improving operational efficiency, resilience and organisational performance through practical operational improvement programmes.",
+        "items": [
+          "Operational performance reviews",
+          "Continuous improvement & KPI development",
+          "Business continuity & operational resilience"
+        ]
+      },
+      {
+        "id": "compliance-assurance",
+        "name": "Compliance & Assurance",
+        "lead": "Developing governance systems and assurance frameworks that strengthen compliance and reduce operational risk.",
+        "items": [
+          "ISO management systems (9001, 14001, 45001 & 55001)",
+          "Internal audits & operational assurance",
+          "Governance, risk & compliance frameworks"
+        ]
+      },
+      {
+        "id": "digital-ai",
+        "name": "Digital Transformation & AI",
+        "lead": "Implementing intelligent technologies that improve decision-making, automation and business performance.",
+        "items": [
+          "AI strategy & digital transformation",
+          "Bespoke software & systems integration",
+          "Workflow automation & operational analytics"
+        ]
+      },
+      {
+        "id": "competency-training",
+        "name": "Competency Development & Technical Training",
+        "lead": "Developing workforce capability through specialist training, competency management and technical development programmes.",
+        "items": [
+          "WINALC & Front Tower OTM training",
+          "Competency frameworks & workforce development",
+          "Technical systems & operational management"
+        ]
+      },
+      {
+        "id": "commercial-strategy",
+        "name": "Commercial Strategy, Budget & Bid Support",
+        "lead": "Supporting organisations with commercial planning, budgeting and bid development to improve project delivery and business performance.",
+        "items": [
+          "Budget planning & financial modelling",
+          "Bid development & tender support",
+          "Commercial strategy & business case development"
+        ]
+      },
+      {
+        "id": "legacy-modernisation",
+        "name": "Legacy Systems Modernisation",
+        "lead": "Extending the operational life of critical assets through intelligent hardware modernisation and technology lifecycle management.",
+        "items": [
+          "Obsolete OTM hardware replacement",
+          "Legacy hardware modernisation & operating system migration",
+          "Asset life extension & technology obsolescence management"
+        ]
+      },
+      {
+        "id": "bespoke-collaboration",
+        "name": "Bespoke Systems Collaboration",
+        "lead": "Working alongside clients to design, develop and implement intelligent systems tailored to unique operational challenges.",
+        "items": [
+          "Requirements capture & solution design",
+          "Bespoke software & system development",
+          "Long-term technology partnership & support"
+        ]
+      }
+    ],
+    "enquire": "Enquire"
+  },
+  "products": {
+    "intro": {
+      "eyebrow": "Platform",
+      "title": "Products",
+      "paragraphs": [
+        "core+ develops intelligent software that helps organisations plan work, protect people and improve operational performance."
+      ]
+    },
+    "hpe": {
+      "flag": "Flagship Platform",
+      "name": "Human Performance Engine (HPE)",
+      "tagline": "Intelligent workforce planning and operational decision support.",
+      "desc": [
+        "The core+ Human Performance Engine (HPE) is a modular operational intelligence platform that helps organisations make safer, more informed workforce planning decisions.",
+        "Rather than simply allocating available people to work, HPE evaluates operational demand, workforce capability, competency, fatigue exposure and task-specific risk to determine the most appropriate workforce while protecting future operational readiness.",
+        "Following manager approval, the platform can be extended to generate operational documentation directly from the approved work plan, creating a complete workflow from planning through to execution."
+      ],
+      "coreModulesLabel": "Core Modules",
+      "coreModules": [
+        "Fatigue Management System",
+        "Competency Management System",
+        "Workforce Planning System",
+        "Shift Reporting & Performance Management System"
+      ],
+      "coreModulesNote": "When these are all combined together a Fit for Duty index is created, this is the intelligent support for the HPE.",
+      "plannedLabel": "Future Modules",
+      "plannedModules": [
+        "Document Production Engine",
+        "Document Management System",
+        "Record Management System",
+        "Customisable EHSQ System"
+      ],
+      "pitch": "Plan smarter. Protect people. Improve operational performance.",
+      "cta": "Learn More"
+    },
+    "hpeDetail": {
+      "eyebrow": "Human Performance Engine",
+      "title": "How it works",
+      "paragraphs": [
+        "Traditional workforce planning systems focus on resource availability. The core+ Human Performance Engine focuses on operational readiness.",
+        "By combining operational work planning, competency assurance, fatigue management, task risk assessment and workforce recommendations within a single platform, HPE enables organisations to optimise operational plans before work begins.",
+        "Rather than replacing operational managers, HPE provides intelligent decision support by projecting workforce readiness, identifying emerging operational risks and recommending practical mitigations that improve safety, efficiency and resilience."
+      ],
+      "capabilitiesLabel": "Key Capabilities",
+      "capabilities": [
+        "Work Plan / Work Order import Function",
+        "Workforce Recommendation Engine",
+        "Competency Assurance",
+        "Fatigue & Fit for Duty Index (FFDI)",
+        "Task Risk Assessment",
+        "Operational Recommendation Engine",
+        "Workforce Readiness Analytics",
+        "Future Document Production Engine (DPE)"
+      ],
+      "modulesNote": "Individual modules available upon request.",
+      "cta": "Enquire"
+    },
+    "environmental": {
+      "number": "Product 02",
+      "name": "Weather Analysis Program (WAP)",
+      "tagline": "Predict operational disruption before it happens.",
+      "desc": [
+        "The core+ weather analysis program provides advanced environmental monitoring for all weather events, including sand / dust management for safety-critical infrastructure.",
+        "By combining weather intelligence, wind behaviour, environmental conditions and site monitoring, organisations receive early warning of operational disruption before safety, performance or productivity are affected.",
+        "Designed specifically for infrastructure operating in exposed and challenging environments."
+      ],
+      "capabilitiesLabel": "Key Capabilities",
+      "capabilities": [
+        "Wind speed and direction monitoring",
+        "Sand movement forecasting",
+        "Weather disruption intelligence",
+        "Infrastructure risk alerts",
+        "Early warning operational triggers",
+        "CCTV and weather station integration",
+        "Infrastructure condition monitoring",
+        "Advanced environmental forecasting"
+      ],
+      "cta": "Learn More"
+    },
+    "station": {
+      "number": "Product 03",
+      "name": "Smart Safety & Performance Station",
+      "tagline": "Connected workforce. Real-time visibility. Improved operational control.",
+      "desc": [
+        "A connected operational interface designed to improve workforce communication, workforce visibility and operational awareness across depots, compounds and worksites.",
+        "The platform provides employees with immediate access to operational information while improving management visibility of workforce activity."
+      ],
+      "capabilitiesLabel": "Key Capabilities",
+      "capabilities": [
+        "Workforce sign-in and attendance",
+        "Biometric authentication",
+        "Safety alerts and notifications",
+        "Live operational messaging",
+        "Digital document access",
+        "Workforce visibility dashboards",
+        "KPI performance monitoring",
+        "Depot and site induction and emergency planning"
+      ],
+      "cta": "Learn More"
+    },
+    "dpe": {
+      "number": "Product 04",
+      "name": "Document Production Engine (DPE)",
+      "tagline": "Intelligent document creation. Instant compliance.",
+      "intro": "Generate accurate, standards-compliant documents in seconds. Reduce manual effort, ensure consistency and maintain full compliance across your operations.",
+      "features": [
+        {
+          "title": "Smart document generation",
+          "desc": "AI-powered engine creates accurate RAMS, permits and compliance documents in seconds."
+        },
+        {
+          "title": "Built-in compliance",
+          "desc": "Pre-built templates aligned to industry standards and regulatory requirements."
+        },
+        {
+          "title": "Live data integration",
+          "desc": "Pulls data from your plans, systems and risk inputs to ensure accuracy and consistency."
+        },
+        {
+          "title": "Save time. Reduce risk.",
+          "desc": "Eliminate duplicate work, reduce errors and keep your team focused on delivery."
+        }
+      ],
+      "benefits": [
+        "Accurate output",
+        "Compliant by design",
+        "Generate in seconds",
+        "Secure & auditable"
+      ],
+      "pitch": "Smarter documents. Safer operations."
+    },
+    "bespoke": {
+      "number": "Product 05",
+      "name": "Bespoke Systems Development",
+      "tagline": "Technology built around your operation.",
+      "desc": [
+        "Every organisation operates differently.",
+        "Where standard products cannot fully address operational requirements, core+ designs and develops bespoke technology solutions tailored to specific operational environments.",
+        "From standalone applications through to enterprise-wide operational platforms, every solution is designed around real operational challenges, existing workflows and measurable business outcomes."
+      ],
+      "solutionsLabel": "Typical Solutions",
+      "solutions": [
+        "Bespoke operational planning systems",
+        "Workforce management solutions",
+        "Environmental monitoring platforms",
+        "Asset intelligence systems",
+        "AI-enabled operational tools",
+        "Systems integration",
+        "Executive dashboards",
+        "Custom operational applications"
+      ],
+      "pitch": "Built around your operational reality.",
+      "cta": "Enquire"
+    }
+  },
+  "contact": {
+    "statusBadge": "Responding now",
+    "statusBody": "We operate across UK and Dubai business hours. Response within one business day for all direct enquiries.",
+    "info": {
+      "email": {
+        "label": "Direct email"
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "value": "Follow Core"
+      },
+      "regions": {
+        "label": "Regions",
+        "value": "London, United Kingdom · Dubai, United Arab Emirates"
+      }
+    },
+    "form": {
+      "enquiryType": "Enquiry Type",
+      "types": {
+        "consulting": "Consulting / Advisory",
+        "iso": "ISO / Audit",
+        "human-factors": "Human Factors",
+        "pilot": "Pilot Partner",
+        "product": "Product Enquiry",
+        "general": "General"
+      },
+      "name": "Your name",
+      "email": "Work email",
+      "company": "Organisation",
+      "role": "Role",
+      "message": "Message",
+      "messagePlaceholder": "Tell us about your operation and what you're looking to achieve.",
+      "privacy": "By submitting this form you agree to be contacted about your enquiry.",
+      "submit": "Send enquiry",
+      "sending": "Sending…",
+      "sent": "Received, we'll be in touch",
+      "retry": "Try again",
+      "successBanner": "Thanks, your enquiry has been received. We'll follow up within one business day.",
+      "errorGeneric": "Unable to process enquiry at this time.",
+      "errorInvalid": "Please check the form and try again.",
+      "errorRateLimit": "Too many requests. Please try again later."
+    }
+  },
+  "notFound": {
+    "eyebrow": "Signal lost",
+    "title": "404",
+    "desc": "The page you're looking for is off-grid. Let's get you back to the operation.",
+    "cta": "Back to home",
+    "alt": "Or contact us"
+  },
+  "cookies": {
+    "title": "We use essential cookies.",
+    "body": "Core only uses cookies strictly necessary to make the site work. No tracking. No profiling.",
+    "accept": "Acknowledged",
+    "learnMore": "Learn more"
+  }
+}

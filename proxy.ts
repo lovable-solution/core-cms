@@ -1,19 +1,13 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { verifySession, SESSION_COOKIE } from '@/lib/auth';
+import createMiddleware from 'next-intl/middleware';
+import { routing } from './i18n/routing';
 
-export default async function proxy(req: NextRequest) {
-  const token = req.cookies.get(SESSION_COOKIE)?.value;
-  const session = token ? await verifySession(token) : null;
-
-  if (!session) {
-    const loginUrl = new URL('/login', req.url);
-    loginUrl.searchParams.set('next', req.nextUrl.pathname);
-    return NextResponse.redirect(loginUrl);
-  }
-
-  return NextResponse.next();
-}
+// Next.js 16 renamed the `middleware` file convention to `proxy`.
+// next-intl's handler works unchanged as the default export.
+export default createMiddleware(routing);
 
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: [
+    // Match all paths except api, Next internals, static files, and metadata files
+    '/((?!api|_next|_vercel|opengraph-image|twitter-image|icon|apple-icon|favicon|sitemap|robots|.*\\..*).*)',
+  ],
 };

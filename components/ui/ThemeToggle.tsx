@@ -4,10 +4,12 @@ import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 export function ThemeToggle({ compact = false }: { compact?: boolean }) {
   const { theme, resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const t = useTranslations('nav');
 
   useEffect(() => setMounted(true), []);
 
@@ -18,8 +20,8 @@ export function ThemeToggle({ compact = false }: { compact?: boolean }) {
     <button
       type="button"
       onClick={() => setTheme(next)}
-      aria-label="Toggle theme"
-      title="Toggle theme"
+      aria-label={t('toggleTheme')}
+      title={t('toggleTheme')}
       className={`group relative grid place-items-center rounded-full border border-line bg-surface/40 text-fg transition-colors hover:border-signal hover:text-signal ${
         compact ? 'h-9 w-9' : 'h-10 w-10'
       }`}

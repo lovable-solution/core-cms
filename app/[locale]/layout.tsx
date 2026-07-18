@@ -23,6 +23,13 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+// Content is edited live via the CMS admin and expected to appear
+// immediately on Publish. Static/ISR caching here would mean the separately
+// deployed production site (coreplusops.com, self-hosted, no shared cache
+// with this deployment) could serve stale content indefinitely — force
+// every request to render fresh from the database instead.
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({
   params,
 }: {

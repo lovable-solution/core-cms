@@ -29,7 +29,11 @@ export async function uploadMediaFile(file: File): Promise<{ url: string; path: 
 
   if (!res.ok) {
     const text = await res.text().catch(() => '');
-    throw new Error(`Supabase upload failed (${res.status}): ${text}`);
+    // Include the target URL (not a secret — it's the NEXT_PUBLIC_ Supabase
+    // project URL) since this only ever reaches server logs (the API route
+    // returns a generic message to the client) and has already been the key
+    // clue for diagnosing which deployment/env was actually being hit.
+    throw new Error(`Supabase upload failed (${res.status}) url=${url} : ${text}`);
   }
 
   return { url: `${url}/storage/v1/object/public/${MEDIA_BUCKET}/${path}`, path };
